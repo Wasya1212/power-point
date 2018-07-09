@@ -1,0 +1,23 @@
+{
+  "http": {
+
+  },
+  "mongo": {
+    "uri": "mongodb://wasya1212:wasya1212cool@ds131721.mlab.com:31721/power_point",
+    "_id": "power_point.wasya1212",
+    "user": "wasya1212",
+    "pass": "wasya1212cool",
+    "db": "power_point",
+    "host": "ds131721.mlab.com",
+    "port": 31721,
+    "roles": [
+      {
+        "role": "dbOwner",
+        "db": "power_point"
+      }
+    ],
+    "credit": {
+
+    }
+  }
+}
