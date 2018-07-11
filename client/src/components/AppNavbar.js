@@ -1,15 +1,61 @@
 import React, { Component } from 'react';
-import Foundation, { Button, Colors } from 'react-foundation';
-import 'foundation-sites/dist/css/foundation.min.css';
+import {
+  TopBar,
+  TopBarLeft,
+  TopBarRight,
+  Menu,
+  MenuItem,
+  MenuText,
+  Button,
+  Link,
+  isDropdown,
+  isVertical,
+  Colors } from 'react-foundation';
 
 class AppNavbar extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isOpen: false
+    };
+  }
+
+  toggle = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
   }
 
   render() {
     return (
-      <Button color={Colors.SUCCESS}>Save</Button>
+      <TopBar>
+        <TopBarLeft>
+          <Menu>
+            <div className="logo">
+              <MenuText>Presentate.com</MenuText>
+            </div>
+            <MenuItem><a href="#">dashboard</a></MenuItem>
+            <MenuItem><a href="#">collections</a></MenuItem>
+            <MenuItem><a href="#">presentations</a></MenuItem>
+            <MenuItem><a href="#">favorites</a></MenuItem>
+          </Menu>
+        </TopBarLeft>
+        <TopBarRight>
+          <Menu>
+            <li className="projects-controll"><Button color={Colors.SECONDARY}>create</Button></li>
+            <li visible={this.state.isOpen ? "true" : "false"} className="user-profile">
+              <Link isDropdown onClick={this.toggle}>
+                <div className="user-picture"><img src="https://i09.fotocdn.net/s21/34/gallery_m/59/2523150881.jpg" alt="profile picture" className="profile-picture" /></div>
+                <Menu isVertical>
+                  <MenuItem><a href="#">profile</a></MenuItem>
+                  <MenuItem><a href="#">settings</a></MenuItem>
+                  <MenuItem><a href="#">logout</a></MenuItem>
+                </Menu>
+              </Link>
+            </li>
+          </Menu>
+        </TopBarRight>
+      </TopBar>
     )
   }
 }
