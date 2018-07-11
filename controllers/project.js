@@ -1,10 +1,25 @@
 const mongoose = require('mongoose');
-const Controller = require('./index');
+// const Controller = require('./index');
 const ProjectModel = require('../models/project');
 
+class Controller {
+  constructor(model) {
+    console.log("Controller constructor", model);
+    if (!model || !model.collection.name) {
+      throw new Error(404, "Controller need mongoose model in constructor!");
+    }
+    this.name = model.collection.name;
+    this.model = model;
+  }
+
+  static checkId(id) {
+    return mongoose.Types.ObjectId.isValid(id.toString());
+  }
+}
+
 class ProjectController extends Controller {
-  constructor(name) {
-    super(ProjectModel);
+  constructor(name, model) {
+    super(model)
     this.name = name;
   }
 
@@ -21,6 +36,4 @@ class ProjectController extends Controller {
   }
 }
 
-// console.log(new ProjectController('Project'))
-
-module.exports = Project = new ProjectController('Project');
+module.exports = Project = new ProjectController('Project', ProjectModel);
