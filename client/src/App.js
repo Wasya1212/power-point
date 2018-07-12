@@ -5,23 +5,30 @@ import 'foundation-sites/dist/css/foundation.min.css';
 import 'foundation-sites/dist/css/foundation-float.min.css';
 import './App.css';
 import './theme.css';
-import blockIcon from './paragraph-justify.svg';
-import listIcon from './table2.svg';
+import blockIcon from './table2.svg';
+import listIcon from './paragraph-justify.svg';
 import {
   Row,
   Column,
   ButtonGroup,
   Link,
-  Colors
+  Colors,
+  Pagination,
+  PaginationPrevious,
+  PaginationNext,
+  PaginationItem,
+  PaginationEllipsis,
+  Inline
 } from 'react-foundation';
 
 const Projects = ['project 1', 'project 2', 'project 3', 'project 4', 'project 5', 'project 6'];
 
-class App extends Component {
+class AppProjectContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      projectViewType: 'block'
+      projectViewType: 'block',
+      projectSortType: 'all'
     };
   }
 
@@ -45,6 +52,67 @@ class App extends Component {
     });
   }
 
+  changeAllProjectSort = () => {
+    this.setState({
+      projectSortType: 'all'
+    });
+  }
+
+  changeLatestProjectSort = () => {
+    this.setState({
+      projectSortType: 'latest'
+    });
+  }
+
+  changeViewedProjectSort = () => {
+    this.setState({
+      projectSortType: 'viewed'
+    });
+  }
+
+  handleSort = () => {
+    this.props.getSort(this.state.projectSortType);
+  }
+
+  render() {
+    return (
+      <div className="projects-container__content">
+        <Row isColumn>
+          <header>
+            <h3>Projects
+              <small current={(this.state.projectSortType == 'all').toString()} onClick={this.changeAllProjectSort}>all presentations</small>
+              <small current={(this.state.projectSortType == 'latest').toString()} onClick={this.changeLatestProjectSort}>latest</small>
+              <small current={(this.state.projectSortType == 'viewed').toString()} onClick={this.changeViewedProjectSort}>most viewed</small>
+            </h3>
+          </header>
+        </Row>
+        <Row isColumn className="projects-view-control">
+          <ButtonGroup>
+            <Link color={Colors.SECONDARY} className="block-view-btn" isDisabled={this.state.projectViewType == 'block'} onClick={this.changeBlockProjectView}>
+              <img src={blockIcon} alt="block view" />
+            </Link>
+            <Link color={Colors.SECONDARY} className="list-view-btn" isDisabled={this.state.projectViewType == 'list'} onClick={this.changeListProjectView}>
+              <img src={listIcon} alt="list view" />
+            </Link>
+          </ButtonGroup>
+        </Row>
+        <Row className="projects-list align-spaced">
+          {Projects.map(project => {
+            return (
+              <Column large={4} medium={4}>
+                <div className="container">
+                  <AppProject />
+                </div>
+              </Column>
+            );
+          })}
+        </Row>
+      </div>
+    );
+  }
+}
+
+class App extends Component {
   render() {
     return (
       <div className="App">
@@ -56,32 +124,19 @@ class App extends Component {
         <div className="App-content">
           <main className="main main-content">
             <section className="projects-container">
-              <Row isColumn>
-                <header>
-                  <h3>Projects / <small>all presentations</small></h3>
-                </header>
-              </Row>
-              <Row isColumn className="projects-view-control">
-                <ButtonGroup>
-                  <Link color={Colors.SECONDARY} className="block-view-btn" isDisabled={this.state.projectViewType == 'block'} onClick={this.changeBlockProjectView}>
-                    <img src={blockIcon} alt="list view" />
-                  </Link>
-                  <Link color={Colors.SECONDARY} className="list-view-btn" isDisabled={this.state.projectViewType == 'list'} onClick={this.changeListProjectView}>
-                    <img src={listIcon} alt="list view" />
-                  </Link>
-                </ButtonGroup>
-              </Row>
-              <Row className="projects-list align-spaced">
-                {Projects.map(project => {
-                  return (
-                    <Column large={4} medium={4}>
-                      <div className="container">
-                        <AppProject />
-                      </div>
-                    </Column>
-                  );
-                })}
-              </Row>
+              <AppProjectContainer />
+            </section>
+            <section className="pagination-container">
+              <Pagination arial-label="Pagination" isCentered>
+                <PaginationPrevious isDisabled>Previous <Inline showForSr>page</Inline></PaginationPrevious>
+                <PaginationItem isCurrent><Inline showForSr>You're on page</Inline> 1</PaginationItem>
+                <PaginationItem><a aria-label="Page 2">2</a></PaginationItem>
+                <PaginationItem><a aria-label="Page 3">3</a></PaginationItem>
+                <PaginationItem><a aria-label="Page 4">4</a></PaginationItem>
+                <PaginationEllipsis />
+                <PaginationItem><a aria-label="Page 12">12</a></PaginationItem>
+                <PaginationNext><a aria-label="Next page">Next <Inline showForSr>page</Inline></a></PaginationNext>
+              </Pagination>
             </section>
           </main>
         </div>

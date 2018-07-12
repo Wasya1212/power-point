@@ -13,4 +13,6 @@
 
 .button {
   outline: none;
+  border-radius: 2px;
+  box-sizing: border-box;
 }

@@ -122,3 +122,123 @@
   color: white;
   margin-left: 2rem;
 }
+
+.projects-container__content small {
+  cursor: pointer;
+  position: relative;
+}
+
+.projects-container__content small::before {
+  content: ' / ';
+  display: inline;
+}
+
+.projects-container__content small[current="true"]::after {
+  position: absolute;
+  bottom: -2px;
+  right: 0;
+  content: '';
+  display: inline-block;
+  width: calc(100% - 1.5ch);
+  height: 2px;
+  background-color: #cacaca;
+}
+
+.project-container {
+  color: #cacaca;
+  position: relative;
+}
+
+.project-container h5, .project-container .pages-count {
+  color: #fff;
+}
+
+.project-container .button {
+  margin: 0 .5rem;
+}
+
+.project-container .content {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+.project-container .content img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.project-container .content::before {
+  content: '';
+  display: inline-block;
+  padding: calc(100% / (4 / 3) / 2) 0;
+}
+
+.project-container .button-group {
+  width: calc(100% - 1rem);
+  position: absolute;
+  bottom: 0;
+}
+
+.project-container .content:hover .project-description {
+  display: inline-block;
+}
+
+.project-container .project-description {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  animation-name: showAnimation;
+  animation-duration: .15s;
+  animation-timing-function: linear;
+}
+
+.project-container .project-description .text {
+  padding: .5rem;
+  text-align: left;
+}
+
+.project-container footer {
+  padding: .5rem;
+}
+
+.project-container .project-pages {
+  text-align: right;
+}
+
+.project-container .project-pages span::after {
+  content: ':';
+  margin-right: 1ch;
+  display: inline;
+}
+
+.project-container .project-date {
+  border-top: 1px solid #767676;
+  padding-top: .5rem;
+}
+
+.project-container .project-date p {
+  width: 50%;
+  display: inline-block;
+}
+
+.project-container .project-date span {
+  display: block;
+}
+
+.project-container .project-date p:nth-child(even) {
+  text-align: right;
+}
+
+@keyframes showAnimation {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
