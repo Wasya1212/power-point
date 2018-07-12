@@ -1,0 +1,16 @@
+.menu a {
+  color: #fff;
+}
+
+.menu-text {
+  color: #767676;
+}
+
+.menu-text a {
+  padding: 0;
+  margin: 0;
+}
+
+.button {
+  outline: none;
+}

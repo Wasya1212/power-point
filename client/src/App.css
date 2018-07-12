@@ -1,9 +1,45 @@
+.App-navigation * {
+  z-index: 1;
+}
+
 .App-navigation .top-bar, .App-navigation .menu {
   background-color: #3c3b3b;
 }
 
 .App-navigation .logo {
   border-right: 2px solid #767676;
+}
+
+.App-navigation .top-bar-left .menu {
+  flex-wrap: nowrap;
+}
+
+.App-navigation .top-bar-left li a {
+  transition: color .1s linear;
+}
+
+.App-navigation .top-bar-left li:hover a {
+  color: #767676;
+}
+
+.App-navigation .top-bar-right {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+
+.top-search {
+  float: left;
+  align-self: center;
+}
+
+.top-search input {
+  border-radius: 2px;
+  border: none;
+  padding: .35rem 1rem;
+  outline: none;
 }
 
 .user-profile {
@@ -25,7 +61,8 @@
 }
 
 .user-profile .menu {
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-color: #3c3b3b;
   position: absolute;
   right: calc(-.5rem + 2px);
   top: calc(100% + .5rem);
@@ -49,7 +86,8 @@
 }
 
 .user-profile .menu li:hover a {
-  color: white;
+  background-color: #fff;
+  color: #3c3b3b;
 }
 
 .user-picture {
@@ -69,31 +107,18 @@
   max-height: 100%;
 }
 
-.App {
-  text-align: center;
+.main-content {
+  background-color: #292929;
+  min-height: calc(100vh - 54px);
+  padding-top: 1rem;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.projects-view-control .button-group {
+  justify-content: flex-end;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+.projects-container header h3 {
+  font-weight: bold;
   color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  margin-left: 2rem;
 }

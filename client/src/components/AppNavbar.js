@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AppSearch from './AppSearch';
 import {
   TopBar,
   TopBarLeft,
@@ -10,7 +11,8 @@ import {
   Link,
   isDropdown,
   isVertical,
-  Colors } from 'react-foundation';
+  Colors
+} from 'react-foundation';
 
 class AppNavbar extends Component {
   constructor(props) {
@@ -32,15 +34,18 @@ class AppNavbar extends Component {
         <TopBarLeft>
           <Menu>
             <div className="logo">
-              <MenuText>Presentate.com</MenuText>
+              <MenuText><a href="/">Presentate.com</a></MenuText>
             </div>
-            <MenuItem><a href="#">dashboard</a></MenuItem>
-            <MenuItem><a href="#">collections</a></MenuItem>
-            <MenuItem><a href="#">presentations</a></MenuItem>
-            <MenuItem><a href="#">favorites</a></MenuItem>
+            <MenuItem><a href="/dashboard">dashboard</a></MenuItem>
+            <MenuItem><a href="/collections">collections</a></MenuItem>
+            <MenuItem><a href="/presentations">presentations</a></MenuItem>
+            <MenuItem><a href="/favorites">favorites</a></MenuItem>
           </Menu>
         </TopBarLeft>
         <TopBarRight>
+          <div className="top-search">
+            <AppSearch />
+          </div>
           <Menu>
             <li className="projects-controll"><Button color={Colors.SECONDARY}>create</Button></li>
             <li visible={this.state.isOpen ? "true" : "false"} className="user-profile">
