@@ -16,3 +16,20 @@
   border-radius: 2px;
   box-sizing: border-box;
 }
+
+.pagination li {
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.pagination li.current {
+  background-color: #3c3b3b;
+}
+
+.pagination li:hover a {
+  background-color: #767676;
+}
+
+.pagination li a, .pagination .ellipsis::after {
+  color: #fff;
+}

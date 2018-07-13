@@ -110,7 +110,7 @@
 .main-content {
   background-color: #292929;
   min-height: calc(100vh - 54px);
-  padding-top: 1rem;
+  padding: 1rem 0;
 }
 
 .projects-view-control .button-group {
@@ -236,6 +236,35 @@
 
 .project-container .project-date p:nth-child(even) {
   text-align: right;
+}
+
+.footer {
+  padding: .5rem 0;
+  background-color: #3c3b3b;
+}
+
+.footer * {
+  font-weight: normal;
+  color: #fff;
+}
+
+.footer .copyright {
+  margin-top: .5rem;
+}
+
+.footer .author, .footer .author strong {
+  color: #767676;
+}
+
+.footer .copyright, .footer .author {
+  display: block;
+  /* line-height: 28px; */
+}
+
+.footer .rooles {
+  text-align: right;
+  margin-top: 1rem;
+  height: 100%;
 }
 
 @keyframes showAnimation {
