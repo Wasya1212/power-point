@@ -33,3 +33,22 @@
 .pagination li a, .pagination .ellipsis::after {
   color: #fff;
 }
+
+.ReactModal__Overlay {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  background-color: rgba(0, 0, 0, .75) !important;
+  overflow: auto;
+}
+
+.ReactModal__Content {
+  margin: auto;
+  margin-top: 2rem;
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  overflow: visible !important;
+}

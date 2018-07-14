@@ -12,7 +12,7 @@ class AppProject extends Component {
 
   render() {
     return (
-      <div className="project-container">
+      <div className={"project-container"}>
         <div className="content">
           <img src="https://i.ytimg.com/vi/QF9kG8QTgVI/maxresdefault.jpg" alt="slide" />
           <div className="project-description">

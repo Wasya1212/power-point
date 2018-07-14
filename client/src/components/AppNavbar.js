@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import Modal from 'react-modal';
 import {Link as RouteLink} from 'react-router-dom';
 import AppSearch from './AppSearch';
-import AppLogin from './AppLogin';
+import {Login as AppLogin} from './AppLogin';
 import {
   TopBar,
   TopBarLeft,
@@ -16,19 +17,7 @@ import {
   Colors
 } from 'react-foundation';
 
-class Modal extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <aside className={(this.props.NAME || 'modal') + this.props.isOpen == false ? ' invisible' : ''}>
-        <h1>Hello world!</h1>
-      </aside>
-    );
-  }
-}
+Modal.setAppElement('#modal-container')
 
 class AppNavbar extends Component {
   constructor(props) {
@@ -45,10 +34,20 @@ class AppNavbar extends Component {
     });
   }
 
-  showLogin = () => {
+  showLoginModal = () => {
+    this.setState({
+      loginModal: true
+    });
+    document.getElementById('root').classList.add('blured');
+    document.body.style.overflow = 'hidden';
+  }
+
+  hideLoginModal = () => {
     this.setState({
       loginModal: false
     });
+    document.getElementById('root').classList.remove('blured');
+    document.body.style.overflow = 'auto';
   }
 
   render() {
@@ -59,7 +58,6 @@ class AppNavbar extends Component {
             <div className="logo">
               <MenuText><RouteLink to='/'>Presentate.com</RouteLink></MenuText>
             </div>
-            <MenuItem><RouteLink to='/dashboard'>dashboard</RouteLink></MenuItem>
             <MenuItem><RouteLink to='/collections'>collections</RouteLink></MenuItem>
             <MenuItem><RouteLink to='/presentations'>presentations</RouteLink></MenuItem>
             <MenuItem><RouteLink to='/favorites'>favorites</RouteLink></MenuItem>
@@ -89,13 +87,28 @@ class AppNavbar extends Component {
               : (
                 <Menu>
                   <MenuItem className="login-btn">
-                    <Button color={Colors.SUCCESS} onClick={this.showLogin}>Sign Up</Button>
+                    <Button color={Colors.SUCCESS} onClick={this.showLoginModal}>Sign Up</Button>
                   </MenuItem>
                 </Menu>
               )
           }
         </TopBarRight>
-        <Modal NAME="login-modal" isOpen={this.state.loginModal} />
+        {
+          this.state.loginModal
+            ? <Modal isOpen={true}>
+              <Button className="close-modal-btn" onClick={this.hideLoginModal}></Button>
+              <AppLogin />
+            </Modal>
+            // (
+            //   <aside className="login-modal">
+            //     <div className="modal-container">
+            //       <Button className="close-modal-btn" onClick={this.hideLoginModal}></Button>
+            //       <AppLogin />
+            //     </div>
+            //   </aside>
+            // )
+            : null
+        }
       </TopBar>
     )
   }

@@ -5,8 +5,6 @@ import createBrowserHistory from 'history/createBrowserHistory';
 import AppNavbar from './components/AppNavbar';
 import AppFooter from './components/AppFooter';
 
-// import LoginPage from './pages/login';
-import RegistrationPage from './pages/registration';
 import HomePage from './pages/frontpage';
 
 class App extends Component {
@@ -20,8 +18,6 @@ class App extends Component {
         </div>
         <div className="App-content">
           <Route exact path='/' component={HomePage} />
-          {/* <Route path='/sign/signTarget=login' component={LoginPage} /> */}
-          <Route path='/sign/signTarget=registration' component={RegistrationPage} />
         </div>
         <div className="App-contacts">
           <AppFooter />

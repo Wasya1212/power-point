@@ -18,7 +18,7 @@ import AppProject from '../components/AppProject';
 import blockIcon from '../table2.svg';
 import listIcon from '../paragraph-justify.svg';
 
-const Projects = ['project 1', 'project 2', 'project 3', 'project 4', 'project 5', 'project 6'];
+const Projects = ['project 1', 'project 2', 'project 3', 'project 4', 'project 5', 'project 6', 'project 7', 'project 8', 'project 9'];
 
 class AppProjectContainer extends Component {
   constructor(props) {
@@ -73,7 +73,7 @@ class AppProjectContainer extends Component {
 
   render() {
     return (
-      <div className="projects-container__content">
+      <div className="projects-container__content" viewType={this.state.projectViewType}>
         <Row isColumn>
           <header>
             <h3>Projects
@@ -96,7 +96,7 @@ class AppProjectContainer extends Component {
         <Row className="projects-list align-spaced">
           {Projects.map(project => {
             return (
-              <Column large={4} medium={4}>
+              <Column large={this.state.projectViewType == 'block' ? 4 : 12} medium={this.state.projectViewType == 'block' ? 4 : 12}>
                 <div className="container">
                   <AppProject />
                 </div>
