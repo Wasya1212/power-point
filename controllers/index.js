@@ -1,62 +1,72 @@
 const mongoose = require('mongoose');
+const path = require('path');
 
 module.exports = class Controller {
-  constructor(model) {
-    if (!model || !model.collection.name) {
-      throw new Error(404, "Controller need mongoose model in constructor!");
+  constructor(modelName) {
+    let model;
+
+    try {
+      model = require(`../models/${modelName}`);
+    } catch (e) {
+      throw new Error(`Model ('${modelName}') in ${path.resolve(__dirname, `../models/${modelName}`)}, for controller not found!`);
     }
-    this.name = model.collection.name;
+
+    if (!model || !model.collection) {
+      throw new Error("Controller need mongoose model in constructor!");
+    }
+
+    this.name = `${model.collection.name}Controller`;
     this.model = model;
   }
 
-  static checkId(id) {
+  checkId(id) {
     return mongoose.Types.ObjectId.isValid(id.toString());
   }
 
-  static findOne(conditions = {}, selectFields = {}, options = {}) {
+  findOne(conditions = {}, selectFields = {}, options = {}) {
     return this.model.findOne(conditions, selectFields, options);
   }
 
-  static findById(id, selectFields = {}, options = {}) {
+  findById(id, selectFields = {}, options = {}) {
     return this.model.findById(id, selectFields, options);
   }
 
-  static findAll(selectFields = {}, options = {}) {
+  findAll(selectFields = {}, options = {}) {
     return this.model.find({}, options).select(selectFields);
   }
 
-  static find(conditions = {}, selectFields = {}, options = {}) {
+  find(conditions = {}, selectFields = {}, options = {}) {
     return this.model.find(conditions, selectFields, options);
   }
 
-  static update() {
+  update() {
 
   }
 
-  static remove(conditions) {
-    this.checkFields(conditions);
+  remove(conditions) {
+    this.checkConditions(conditions);
     return this.model.deleteMany(conditions);
   }
 
-  static removeOne(conditions, options = {}) {
-    this.checkFields(conditions);
+  removeOne(conditions, options = {}) {
+    this.checkConditions(conditions);
     return this.model.findOneAndRemove(conditions, options)
   }
 
-  static findByIdAndRemove(id, options) {
+  findByIdAndRemove(id, options) {
     return this.model.findByIdAndRemove(id, options);
   }
 
-  static findOneAndRemove(conditions, options = {}) {
-    this.checkFields(conditions);
+  findOneAndRemove(conditions, options = {}) {
+    this.checkConditions(conditions);
     return this.model.findOneAndRemove(conditions, options)
   }
 
-  static removeAll() {
+  removeAll() {
     return this.model.deleteMany();
   }
 
-  checkFields(conditions) {
+  checkConditions(conditions) {
     if (conditions == {} || !conditions) {
       throw new Error(404, "Conditions cannot be empty!");
     }
