@@ -19,5 +19,9 @@
     "credit": {
 
     }
+  },
+  "google": {
+    "clientID": "844301033713-dnm0l2u0kpnlmshiq66ni82j7ar4vd3c.apps.googleusercontent.com",
+    "clientSecret": "y2nm9HWGUTpp2t3QTYgo8XGf"
   }
 }

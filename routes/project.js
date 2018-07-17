@@ -7,8 +7,6 @@ const Project = require('../controllers/project');
 // @routes
 router
   .route('/:id')
-router
-  .route('/:id')
   .all((req, res, next) => {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
       next(new Error(404, "Wrong project id"));

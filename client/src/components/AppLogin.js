@@ -3,9 +3,11 @@ import {Link as RouteLink} from 'react-router-dom';
 import {
   Button,
   Colors,
-  Row
+  Row,
+  Link
 } from 'react-foundation';
 import logoIcon from '../logo-icon.png';
+import axios from 'axios';
 
 export class RegistrationItem extends Component {
   constructor(props) {
@@ -70,6 +72,13 @@ export class LoginItem extends Component {
     this.props.showRegisration();
   }
 
+  signInWithGoogle = () => {
+    axios.get('')
+      .then(response => {
+        console.log(response);
+      });
+  }
+
   render() {
     return (
       <section className="login-form">
@@ -104,8 +113,8 @@ export class LoginItem extends Component {
           </fieldset>
         </form>
         <section className="social">
-          <Button isExpanded className="facebook-login-btn"><span className="link-icon"><img src="https://www.vectorico.com/wp-content/uploads/2018/02/Facebook-Logo.png"/></span>Log in with Facebook</Button>
-          <Button isExpanded className="google-login-btn"><span className="link-icon"><img src="http://blog.addthiscdn.com/wp-content/uploads/2015/11/Google_logo.png"/></span>Sing in with Goggle</Button>
+          <a href="/"><Button isExpanded className="facebook-login-btn"><span className="link-icon"><img src="https://www.vectorico.com/wp-content/uploads/2018/02/Facebook-Logo.png"/></span>Log in with Facebook</Button></a>
+          <a href="http://localhost:5000/api/auth/google"><Button isExpanded className="google-login-btn"><span className="link-icon"><img src="http://blog.addthiscdn.com/wp-content/uploads/2015/11/Google_logo.png"/></span>Sing in with Goggle</Button></a>
         </section>
       </section>
     );

@@ -6,6 +6,7 @@ import AppNavbar from './components/AppNavbar';
 import AppFooter from './components/AppFooter';
 
 import HomePage from './pages/frontpage';
+import EditorPage from './pages/editor';
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
         </div>
         <div className="App-content">
           <Route exact path='/' component={HomePage} />
+          <Route exact path='/project' component={EditorPage}></Route>
         </div>
         <div className="App-contacts">
           <AppFooter />

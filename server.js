@@ -3,6 +3,7 @@ const config = require('config');
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const passport = require('./libs/passport');
 
 const app = express();
 
@@ -20,6 +21,7 @@ mongoose
 
 // use router
 app.use('/api/project', require('./routes/project'));
+app.use('/api', require('./routes/sign'));
 
 // error handling
 // app.use(logErrors);

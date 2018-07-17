@@ -71,14 +71,16 @@ class AppNavbar extends Component {
             this.props.isAuthenticated
               ? (
                 <Menu>
-                  <MenuItem className="projects-controll"><Button color={Colors.SECONDARY}>create</Button></MenuItem>
+                  <MenuItem className="projects-controll">
+                    <RouteLink to="/project" className="button secondary">create</RouteLink>
+                  </MenuItem>
                   <MenuItem visible={this.state.isOpen ? "true" : "false"} className="user-profile">
                     <Link isDropdown onClick={this.toggle}>
                       <div className="user-picture"><img src="https://i09.fotocdn.net/s21/34/gallery_m/59/2523150881.jpg" alt="profile picture" className="profile-picture" /></div>
                       <Menu isVertical>
-                        <MenuItem><a href="#">profile</a></MenuItem>
-                        <MenuItem><a href="#">settings</a></MenuItem>
-                        <MenuItem><a href="#">logout</a></MenuItem>
+                        <MenuItem><RouteLink to="/user/98236469238">profile</RouteLink></MenuItem>
+                        <MenuItem><RouteLink to="/settings">settings</RouteLink></MenuItem>
+                        <MenuItem><RouteLink to="/logout">logout</RouteLink></MenuItem>
                       </Menu>
                     </Link>
                   </MenuItem>
@@ -99,14 +101,6 @@ class AppNavbar extends Component {
               <Button className="close-modal-btn" onClick={this.hideLoginModal}></Button>
               <AppLogin />
             </Modal>
-            // (
-            //   <aside className="login-modal">
-            //     <div className="modal-container">
-            //       <Button className="close-modal-btn" onClick={this.hideLoginModal}></Button>
-            //       <AppLogin />
-            //     </div>
-            //   </aside>
-            // )
             : null
         }
       </TopBar>
